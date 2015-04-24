@@ -14,10 +14,10 @@ conduit.Route("/thing/other", func(req *conduit.Request, res *conduit.Responder)
   res.Error(interface{})
 })
 
-conduit.Connect("site.com:4242")
-conduit.Disconnect()
-conn.Listen(4242, func(conn *conduit.Conn) {
-  conn.Request("/thing/other", Thing{}).Handle(func(res *conduit.Response) {
+err := conduit.Connect("site.com:4242")
+err := conduit.Disconnect()
+err := conn.Serve(4242, func(conn *conduit.Conn) {
+  conn.Request("/thing/other").Header("Authorization", "4292743562834765987").Body(Thing{}).Send(func(res *conduit.Response) {
     res.Status.IsOk()
     res.Status.IsError()
     res.Status.IsFault()
