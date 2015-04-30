@@ -2,7 +2,7 @@
 A library that makes TCP connections feel more web-like.
 ```go
 client := conduit
-    .NewClient()
+    .Client()
     .Credentials("me@sandile.io", "somesortofpassword")
     .Route("/thing/other", func(context *conduit.Context, req *conduit.Request, res *conduit.Responder) {
         req.Body.Raw() // Returns the raw string version of the body
